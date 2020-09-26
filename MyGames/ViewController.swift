@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  MyGames
 //
-//  Created by Aluno on 8/24/20.
+//  Created by Douglas Frari on 8/24/20.
 //  Copyright © 2020 CESAR School. All rights reserved.
 //
 
@@ -15,4 +15,6 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+
 }
+

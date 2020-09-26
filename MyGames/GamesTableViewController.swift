@@ -2,7 +2,7 @@
 //  GamesTableViewController.swift
 //  MyGames
 //
-//  Created by Aluno on 8/24/20.
+//  Created by Douglas Frari on 8/24/20.
 //  Copyright © 2020 CESAR School. All rights reserved.
 //
 
@@ -10,14 +10,20 @@ import UIKit
 import CoreData
 
 class GamesTableViewController: UITableViewController {
+
     
     // tip. podemos passar qual view vai gerenciar a busca. Neste caso a própria viewController (logo usei nil)
     let searchController = UISearchController(searchResultsController: nil)
+    
+    
     
     var label = UILabel()
     
     // esse tipo de classe oferece mais recursos para monitorar os dados
     var fetchedResultController:NSFetchedResultsController<Game>!
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,10 +104,22 @@ class GamesTableViewController: UITableViewController {
         
     }
     
+
+    /*
+    // Override to support conditional editing of the table view.
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the specified item to be editable.
+        return true
+    }
+    */
+
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
                 
         if editingStyle == .delete {
+            
+            // TODO colocar um alerta de confirmacao aqui
             
             guard let game = fetchedResultController.fetchedObjects?[indexPath.row] else {return}
             context.delete(game)
@@ -114,7 +132,24 @@ class GamesTableViewController: UITableViewController {
         }
         
     }
+    
 
+    /*
+    // Override to support rearranging the table view.
+    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+
+    }
+    */
+
+    /*
+    // Override to support conditional rearranging of the table view.
+    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        // Return false if you do not want the item to be re-orderable.
+        return true
+    }
+    */
+
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -132,8 +167,12 @@ class GamesTableViewController: UITableViewController {
             }
             
         }
+        
     }
-}
+    
+
+} // fim da classe
+
 
 extension GamesTableViewController: NSFetchedResultsControllerDelegate {
    
@@ -153,6 +192,7 @@ extension GamesTableViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
+
 extension GamesTableViewController: UISearchResultsUpdating, UISearchBarDelegate {
     func updateSearchResults(for searchController: UISearchController) {
         // TODO
@@ -161,6 +201,7 @@ extension GamesTableViewController: UISearchResultsUpdating, UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         loadGames()
         tableView.reloadData()
+       
     }
    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

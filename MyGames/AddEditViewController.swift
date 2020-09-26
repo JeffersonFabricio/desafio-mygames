@@ -2,7 +2,7 @@
 //  AddEditViewController.swift
 //  MyGames
 //
-//  Created by Aluno on 8/24/20.
+//  Created by Douglas Frari on 8/24/20.
 //  Copyright © 2020 CESAR School. All rights reserved.
 //
 
@@ -27,8 +27,10 @@ class AddEditViewController: UIViewController {
         return pickerView
     }()
     
+    
     // recomenda-se declarar como Optional - quando tem o ponto de interrogacao (?)
     var game: Game?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,13 +42,12 @@ class AddEditViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
         if ConsolesManager.shared.consoles.isEmpty {
             // TODO devemos exibir um alerta que precisamos cadastrar plataforma antes.
             let alert = UIAlertController(title: "Atenção!", message: "É necessário cadastrar uma ou mais plataformas primeiro", preferredStyle: .alert)
             alert.view.tintColor = UIColor(named: "second")
             
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action) in            
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: {(action) in
                 self.navigationController?.popViewController(animated: true)
             }))
             present(alert, animated: true, completion: nil)
@@ -54,7 +55,6 @@ class AddEditViewController: UIViewController {
         } else {
             prepareDataLayout()
         }
-        
     }
     
     func prepareDataLayout() {
@@ -99,10 +99,23 @@ class AddEditViewController: UIViewController {
         cancel()
     }
     
+    /*
+    // MARK: - Navigation
+
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // Get the new view controller using segue.destination.
+        // Pass the selected object to the new view controller.
+    }
+    */
+    
+    
     @IBAction func AddEditCover(_ sender: UIButton) {
         // para adicionar uma imagem da biblioteca
         
+        // para adicionar uma imagem da biblioteca
         print("para adicionar uma imagem da biblioteca")
+        
         
         let alert = UIAlertController(title: "Selecinar capa", message: "De onde você quer escolher a capa?", preferredStyle: .actionSheet)
         
@@ -121,6 +134,7 @@ class AddEditViewController: UIViewController {
         
         present(alert, animated: true, completion: nil)
     }
+    
     
     func selectPicture(sourceType: UIImagePickerController.SourceType) {
         
@@ -143,6 +157,7 @@ class AddEditViewController: UIViewController {
         }
     }
     
+    
     func chooseImageFromLibrary(sourceType: UIImagePickerController.SourceType) {
         
         DispatchQueue.main.async {
@@ -156,6 +171,7 @@ class AddEditViewController: UIViewController {
         }
         
     }
+    
     
     @IBAction func addEditGame(_ sender: UIButton) {
         // acao salvar novo ou editar existente
@@ -185,7 +201,7 @@ class AddEditViewController: UIViewController {
         
     }
 
-}
+} // fim da classe
 
 
 extension AddEditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -193,6 +209,7 @@ extension AddEditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
+   
    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return ConsolesManager.shared.consoles.count
@@ -208,6 +225,7 @@ extension AddEditViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 extension AddEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // tip. implementando os 2 protocols o evento sera notificando apos user selecionar a imagem
+    
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         

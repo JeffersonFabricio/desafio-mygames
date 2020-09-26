@@ -2,7 +2,7 @@
 //  ViewController+CoreData.swift
 //  MyGames
 //
-//  Created by Aluno on 8/25/20.
+//  Created by Douglas Frari on 8/25/20.
 //  Copyright © 2020 CESAR School. All rights reserved.
 //
 

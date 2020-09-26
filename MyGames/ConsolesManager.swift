@@ -2,11 +2,13 @@
 //  ConsolesManager.swift
 //  MyGames
 //
-//  Created by Aluno on 8/25/20.
+//  Created by Douglas Frari on 8/25/20.
 //  Copyright © 2020 CESAR School. All rights reserved.
 //
 
 import Foundation
+
+
 import CoreData
 
 class ConsolesManager {
@@ -15,10 +17,12 @@ class ConsolesManager {
     
     var consoles: [Console] = []
     
+    
     // usando um padrao de projeto Singleton
     private init() {
         
     }
+    
     
     func loadConsoles(with context: NSManagedObjectContext) {
         
@@ -34,6 +38,7 @@ class ConsolesManager {
         }
     }
     
+    
     func deleteConsole(index: Int, context: NSManagedObjectContext) {
         let console = consoles[index]
         context.delete(console)
@@ -45,5 +50,6 @@ class ConsolesManager {
             print(error.localizedDescription)
         }
     }
+    
     
 }
